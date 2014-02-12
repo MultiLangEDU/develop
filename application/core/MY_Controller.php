@@ -7,6 +7,10 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $CI =& get_instance();
+
+        if($CI->uri->segment(1) == 'admin' and $CI->uri->segment(2) != 'login' and !$CI->auth->isLoggedIn()){
+            redirect('admin/login');
+        }
     }
 
 }

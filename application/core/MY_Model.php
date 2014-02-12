@@ -48,7 +48,6 @@ class MY_Model extends CI_Model
     
     public function update($id, $vars){
         $this->db->where($this->pk, $id)->update($this->table, $vars);
-    }
-    
+    }    
     
 }

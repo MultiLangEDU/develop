@@ -1,0 +1,1 @@
+Hello <?=$user->first_name.' '.$user->last_name?> <a href="<?=base_url('logout')?>">Logout</a>
