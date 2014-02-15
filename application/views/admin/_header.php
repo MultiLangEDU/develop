@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="<?=site_url('admin')?>">Home</a></li>
-                <li><a href="<?=site_url('admin/users')?>">Users</a></li>
+                <li><a href="<?=site_url('admin/users')?>">Users <span class="badge"><?=$all_users_count?></span></a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li><a href="<?=site_url('logout')?>">Logout</a></li>

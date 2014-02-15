@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2014-02-15 21:05:29
+Date: 2014-02-15 22:13:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,6 +34,28 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `courses`
+-- ----------------------------
+DROP TABLE IF EXISTS `courses`;
+CREATE TABLE `courses` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `create_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of courses
+-- ----------------------------
+INSERT INTO `courses` VALUES ('1', 'PHP', 'asdasdasdasdasd', '0000-00-00');
+INSERT INTO `courses` VALUES ('2', 'MYSQL', '', '0000-00-00');
+INSERT INTO `courses` VALUES ('3', 'JavaScript', '', '0000-00-00');
+INSERT INTO `courses` VALUES ('4', 'Phyton', '', '0000-00-00');
+INSERT INTO `courses` VALUES ('5', 'CSS', 'ASDASDASDAS', '0000-00-00');
+INSERT INTO `courses` VALUES ('6', 'CodeIgniter', '', '0000-00-00');
+
+-- ----------------------------
 -- Table structure for `users`
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -53,7 +75,7 @@ CREATE TABLE `users` (
   `telephone` varchar(15) DEFAULT NULL,
   `create_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
@@ -66,6 +88,7 @@ INSERT INTO `users` VALUES ('6', 'test5@test.com', '$2a$08$pfLxuHROODRBGl1FRB05W
 INSERT INTO `users` VALUES ('7', 'test6@test.com', '$2a$08$pfLxuHROODRBGl1FRB05WeOb55vPkMHUKuV9dqRaYHOPnfreBNqOu', '1', null, null, 'Arsen', 'Bagratyan', null, 'Yerevan', '0018', 'Armenia', null, '2013-11-26');
 INSERT INTO `users` VALUES ('8', 'test7@test.com', '$2a$08$pfLxuHROODRBGl1FRB05WeOb55vPkMHUKuV9dqRaYHOPnfreBNqOu', '1', null, null, 'Arsen', 'Bagratyan', null, 'Yerevan', '0018', 'Armenia', null, '2013-11-26');
 INSERT INTO `users` VALUES ('9', 'test8@test.com', '$2a$08$pfLxuHROODRBGl1FRB05WeOb55vPkMHUKuV9dqRaYHOPnfreBNqOu', '1', null, null, 'Arsen', 'Bagratyan', null, 'Yerevan', '0018', 'Armenia', null, '2013-11-26');
+INSERT INTO `users` VALUES ('13', 'student@gmail.com', '$2a$08$ivKCjbiKpJOByY90xYfLke5nLKLJj1mEQADyQbFVA3QpyYJVCNHXO', '3', null, null, 'Student', 'Student', 'Address', 'Yerevan', '0018', 'Armenia', '64564765856875', '2014-02-15');
 INSERT INTO `users` VALUES ('11', 'test8@test.com', '$2a$08$pfLxuHROODRBGl1FRB05WeOb55vPkMHUKuV9dqRaYHOPnfreBNqOu', '1', null, null, 'Arsen', 'Bagratyan', null, 'Yerevan', '0018', 'Armenia', null, '2013-11-26');
 INSERT INTO `users` VALUES ('12', 'testik@test.com', '$2a$08$boOveVybHp2bc3WmzVnkp.a2GKqCZVybA.wL1kl8BOXc6/PYVhwmu', '1', null, null, 'testik', 'Test', 'Address', 'City', 'Zip', 'Country', 'Phone', '2014-02-15');
 

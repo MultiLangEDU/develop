@@ -8,19 +8,36 @@ class Users extends MY_Controller{
 		parent::__construct();
 	}
     
-    public function index($page = 0)
+    public function index($type = 'all', $page = 0)
     {
     	$this->load->model('users_model');
+        
+        $where = array();
+        if($type != 'all'){
+            switch($type){
+                case 'admin':
+                    $where = array('user_type' => 1);
+                break;
+                case 'currik':
+                    $where = array('user_type' => 2);
+                break;
+                case 'students':
+                    $where = array('user_type' => 3);
+                break;
+            }
+        }
+        
         /* Start Pagination */
 
-        $num_pages = $this->users_model->countRows();
+        $num_pages = $this->users_model->countRows($where);
+
         $this->load->library('pagination');
         $config=array(
-            'base_url'         => site_url('admin/users/index/'),
+            'base_url'         => site_url('admin/users/index/'.$type),
             'total_rows'     => $num_pages,
-            'per_page'         => 8,
+            'per_page'         => 20,
             'num_links'        => 3,
-            'uri_segment'        => 4
+            'uri_segment'        => 5
         );
 
         $config['full_tag_open'] = '<ul class="pagination pull-right">';
@@ -37,7 +54,7 @@ class Users extends MY_Controller{
         $this->pagination->initialize($config);
 
         $data = array(
-            'users' => $this->users_model->getRecords($config['per_page'], $page),
+            'users' => $this->users_model->getRecords($config['per_page'], $page, $where),
             'pagination' => $this->pagination->create_links(),
         );
         $this->load->admin_view('users/index', $data);
