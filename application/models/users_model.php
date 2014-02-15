@@ -8,7 +8,7 @@ class Users_model extends MY_Model{
     public $table = 'users';
     public $pk = 'id';
     
-    public function getRecords($page = null, $per_page = null, $where)
+    public function getRecords($page = null, $per_page = null, $where = false)
     {
         if(!empty($where)){
             $this->db->where($where);
@@ -18,10 +18,27 @@ class Users_model extends MY_Model{
         }
         return parent::getRecords();
     }
-    
-    public function getHotelliers()
+
+    public function deleteUser($id){
+    	$sql = "DELETE FROM users WHERE id = ".$id; 
+		$this->db->query($sql);
+    }
+
+    public function getUserByTypes($page = null, $per_page = null, $where)
     {
-        return parent::getRecords(array('user_type' => 2));
+        if(!empty($where)){
+        	foreach($where as $condition)
+	            $this->db->or_where($condition);
+        }
+        if(!is_null($page) && !is_null($per_page)){
+            $this->db->limit($page, $per_page);    
+        }
+        return parent::getRecords();
+    }
+
+    public function getUserTypes()
+    {
+		return $this->db->get('users_types')->result();
     }
     
     /**
@@ -55,26 +72,24 @@ class Users_model extends MY_Model{
 	Registers a new user
 	Returns userRegistrationObject
 	***/
-	public function registerUser($email,$firstName,$lastName,$password,$pre_authorized=false){
-
-		
+	public function registerUser($email, $firstName, $user_type, $lastName = null, $password = null, $pre_authorized=false)
+	{	
 		if ($pre_authorized)
 			$auth_code = md5(rand(1000,9999));
 		else
 			$auth_code ="";
-		
-		$this->db->insert('users',array(
+		$array = array(
 			'email'=>$email,
 			'first_name'=>$firstName,
 			'last_name'=>$lastName,
-			'has_store'=>0,
-			'password'=>$this->hashPassword($password),
-			'last_login'=>'0000-00-00',
+			'user_type'=>$user_type,
 			'create_date'=>date('Y-m-d'),
-			'auth_code'=>$auth_code,
-			'oauth_code'=>''			
-			));
-		return array("userId"=>$this->db->insert_id,"code"=>$auth_code);		
+		);
+		if(isset($password))
+			$array['password']= $this->hashPassword($password);
+
+		$this->db->insert('users',$array);
+		return array("userId"=> $this->db->insert_id());		
 	}
 
 	/*** 
@@ -176,7 +191,8 @@ class Users_model extends MY_Model{
 	Returns user object, NULL of not found
 	**/
 	public function getUserById($id){
-		return $this->_getUserByField(array('id'=>$id));
+		$res = $this->_getUserByField(array('id'=>$id));
+		return $res;
 	}
 
 	/***

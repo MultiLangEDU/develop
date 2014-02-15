@@ -33,6 +33,7 @@ class MY_Loader extends CI_Loader
         
         $result = '';
         $result .= $this->_ci_load(array('_ci_view' => 'admin/_header', '_ci_vars' => $this->_ci_object_to_array($vars), '_ci_return' => $return));
+        $result .= $this->_ci_load(array('_ci_view' => 'admin/_sidebar', '_ci_vars' => $this->_ci_object_to_array($vars), '_ci_return' => $return));
         $result .= $this->_ci_load(array('_ci_view' => 'admin/'.$view, '_ci_vars' => $this->_ci_object_to_array($vars), '_ci_return' => $return));
         $result .= $this->_ci_load(array('_ci_view' => 'admin/_footer', '_ci_vars' => $this->_ci_object_to_array($vars), '_ci_return' => $return));
         return $result;

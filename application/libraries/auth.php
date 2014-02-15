@@ -89,13 +89,4 @@ class auth{
         }
         return FALSE;
     }
-    
-    function isHotel()
-    {
-        $role = $this->getRole();
-        if($role == 2){
-            return TRUE;
-        }
-        return FALSE;
-    }
 }	
