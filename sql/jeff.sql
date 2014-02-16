@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2014-02-15 22:13:46
+Date: 2014-02-16 17:35:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,28 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `classes`
+-- ----------------------------
+DROP TABLE IF EXISTS `classes`;
+CREATE TABLE `classes` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `create_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of classes
+-- ----------------------------
+INSERT INTO `classes` VALUES ('1', '3', 'First Class', 'asd asd asd', '2014-02-16');
+INSERT INTO `classes` VALUES ('2', '6', 'Second Class', '', '2014-02-16');
+INSERT INTO `classes` VALUES ('3', '1', '3 Class', '', '2014-02-16');
+INSERT INTO `classes` VALUES ('4', '1', '4 class', '', '2014-02-16');
+INSERT INTO `classes` VALUES ('5', '1', 'Test', '', '2014-02-16');
 
 -- ----------------------------
 -- Table structure for `courses`

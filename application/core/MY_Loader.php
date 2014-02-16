@@ -33,6 +33,7 @@ class MY_Loader extends CI_Loader
             $vars['all_users_count'] = $ci->users_model->countRows();
             $vars['all_students_count'] = $ci->users_model->countRows(array('user_type' => 3));
             $vars['all_courses_count'] = $ci->courses_model->countRows();
+            $vars['all_classes_count'] = $ci->classes_model->countRows();
         }
         
         $result = '';

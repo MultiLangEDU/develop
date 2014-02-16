@@ -3,9 +3,9 @@
 Users model
 ************************/
 
-class Courses_model extends MY_Model{
+class Classes_model extends MY_Model{
 	
-    public $table = 'courses';
+    public $table = 'classes';
     public $pk = 'id';
     
     public function getRecords($page = null, $per_page = null, $where = false)
@@ -16,9 +16,10 @@ class Courses_model extends MY_Model{
         if(!is_null($page) && !is_null($per_page)){
             $this->db->limit($page, $per_page);    
         }
-        $this->db->select('courses.*, count(classes.course_id) as total_classes');
-        $this->db->join('classes', 'courses.id = classes.course_id', 'LEFT')->group_by('courses.id');
+        $this->db->select('classes.*, courses.name as course_name');
+        $this->db->join('courses', 'courses.id = classes.course_id');
         return parent::getRecords();
     }
 
 }
+

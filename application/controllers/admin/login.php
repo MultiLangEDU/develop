@@ -1,7 +1,6 @@
 <?php
 class Login extends CI_Controller
 {
-
 	var $logged_in_user;
 
 	function __construct(){
